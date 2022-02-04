@@ -29,7 +29,7 @@ exports.addPayment = async (req, res) => {
             status: "success",
             payment: {
                 ...paymentData,
-                image: paymentData.image
+                // image: paymentData
             }
         })
     } catch (error) {
