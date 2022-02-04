@@ -1,4 +1,5 @@
 const { music, artis } = require("../../models")
+const cloudinary = require('../utils/cloudinary');
 
 const Joi = require("joi")
 
@@ -9,6 +10,12 @@ exports.addMusic = async (req, res) => {
         const { ...dataMusic } = req.body
 
         console.log(dataMusic)
+
+        const result = await cloudinary.uploader.upload(req.file.path, {
+            folder: 'dumbsound_file',
+            use_filename: true,
+            unique_filename: false,
+          });
 
         const schema = Joi.object({
             title: Joi.string().required(),

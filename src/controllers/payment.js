@@ -1,4 +1,5 @@
 const { payment, user } = require("../../models")
+const cloudinary = require('../utils/cloudinary');
 
 let FILE_PATH = 'http://localhost:5001/uploads/musics/'
 
@@ -6,15 +7,21 @@ exports.addPayment = async (req, res) => {
     try {
         const { ...dataPayment } = req.body
 
+        const result = await cloudinary.uploader.upload(req.file.path, {
+            folder: 'dumbsound_file',
+            use_filename: true,
+            unique_filename: false,
+          });
+
         let today = new Date();
         const data = await payment.create({
             ...dataPayment,
             startDate: today,
             dueDate: today,
             status: "pending",
-            attache: req.files[0].filename,
+            attache: result.public_id,
         })
-        console.log(req.files[0].filename)
+        // console.log(req.files[0].filename)
 
         paymentData = JSON.parse(JSON.stringify(data))
 
