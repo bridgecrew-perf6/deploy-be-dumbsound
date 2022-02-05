@@ -31,6 +31,7 @@ exports.addMusic = async (req, res) => {
             folder: 'dumbsound_file',
             use_filename: true,
             unique_filename: false,
+            resource_type: "video",
         });
         // console.log(result)
         console.log(thumbnail)
