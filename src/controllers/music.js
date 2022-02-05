@@ -27,7 +27,7 @@ exports.addMusic = async (req, res) => {
         });
         
         
-        const atthace = await cloudinary.uploader.upload(req.files[0].path, {
+        const atthace = await cloudinary.uploader.upload(req.files[1].path, {
             folder: 'dumbsound_file',
             use_filename: true,
             unique_filename: false,
@@ -54,7 +54,7 @@ exports.addMusic = async (req, res) => {
         const addMusic = await music.create({
             title: dataMusic.title,
             year: dataMusic.year,
-            thumbnail: thumbnail.public.id,
+            thumbnail: thumbnail.public_id,
             atthace: atthace.public_id,
             artisId: dataMusic.artisId
         })
