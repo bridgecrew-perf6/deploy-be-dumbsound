@@ -4,7 +4,7 @@ const cloudinary = require('../utils/cloudinary');
 const Joi = require("joi")
 
 let FILE_PATH_IMAGE = 'https://res.cloudinary.com/dbxxijc5x/image/upload/v1644047963/'
-let FILE_PATH_MUSIC = 'https://res.cloudinary.com/dbxxijc5x/video/upload/v1644066404/dumbsound_file/'
+let FILE_PATH_MUSIC = 'https://res.cloudinary.com/dbxxijc5x/video/upload/v1644066404/'
 
 exports.addMusic = async (req, res) => {
     try {
