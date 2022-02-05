@@ -1,7 +1,7 @@
 const { payment, user } = require("../../models")
 const cloudinary = require('../utils/cloudinary');
 
-let FILE_PATH = 'https://res.cloudinary.com/dbxxijc5x/image/upload/v1644047963/dumbsound_file/'
+let FILE_PATH = 'https://res.cloudinary.com/dbxxijc5x/image/upload/v1644047963/'
 
 exports.addPayment = async (req, res) => {
     try {
