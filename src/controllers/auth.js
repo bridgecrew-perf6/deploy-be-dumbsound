@@ -64,7 +64,7 @@ exports.register = async(req, res) => {
             fullName: data.fullName,
             email: data.email,
             password: hashedPassword,
-            // listAs: "0",
+            listAs: "1",
             gender: data.gender,
             phone: data.phone,
             address: data.address
