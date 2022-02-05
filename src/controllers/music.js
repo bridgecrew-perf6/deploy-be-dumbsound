@@ -3,7 +3,8 @@ const cloudinary = require('../utils/cloudinary');
 
 const Joi = require("joi")
 
-let FILE_PATH = 'https://res.cloudinary.com/dbxxijc5x/image/upload/v1644047963/'
+let FILE_PATH_IMAGE = 'https://res.cloudinary.com/dbxxijc5x/image/upload/v1644047963/'
+let FILE_PATH_MUSIC = 'https://res.cloudinary.com/dbxxijc5x/video/upload/v1644066404/dumbsound_file/'
 
 exports.addMusic = async (req, res) => {
     try {
@@ -113,8 +114,8 @@ exports.getMusics = async (req, res) => {
         data = data.map((item) => {
             return {
                 ...item,
-                thumbnail: FILE_PATH + item.thumbnail,
-                atthace: FILE_PATH + item.atthace
+                thumbnail: FILE_PATH_IMAGE + item.thumbnail,
+                atthace: FILE_PATH_MUSIC + item.atthace
             }
         })
 
@@ -158,8 +159,8 @@ exports.getMusic = async (req, res) => {
         data = data.map((item) => {
             return {
                 ...item,
-                thumbnail: FILE_PATH + item.thumbnail,
-                atthace: FILE_PATH + item.atthace
+                thumbnail: FILE_PATH_IMAGE + item.thumbnail,
+                atthace: FILE_PATH_MUSIC + item.atthace
             }
         })
 
