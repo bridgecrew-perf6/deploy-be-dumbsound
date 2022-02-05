@@ -6,6 +6,13 @@ let FILE_PATH = 'http://localhost:5001/uploads/musics/'
 exports.addPayment = async (req, res) => {
     try {
         const { ...dataPayment } = req.body
+
+        if (!req.files) {
+            return res.send(400).send({
+                status: "failde",
+                message: "please Upload file"
+            })
+        }
         
         console.log(req.files[0].path)
         const result = await cloudinary.uploader.upload(req.files[0].path, {
@@ -13,13 +20,6 @@ exports.addPayment = async (req, res) => {
             use_filename: true,
             unique_filename: false,
         });
-        
-        if (!result) {
-            res.send(400).send({
-                status: "failed",
-                message: "data not found"
-            })
-        }
 
         console.log(result.public_id)
 

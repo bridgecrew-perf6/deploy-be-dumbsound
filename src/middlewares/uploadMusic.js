@@ -52,10 +52,9 @@ exports.uploadMusic = (imageFile, audioFile) => {
             return res.status(400).send(req.fileValidationError)
 
         // show an error if file doesnt provided requirement
-        // if (!req.file && !err)
-        //     return res.status(400).send({
-        //     message: "Please select files upload"
-        //     })
+            if (!req.file && !err) {
+                return next()
+            }
 
         // show an error if it bigger than max size
         if (err) {
