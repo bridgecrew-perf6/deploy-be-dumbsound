@@ -66,9 +66,9 @@ exports.uploadMusic = (imageFile, audioFile) => {
             }
             return res.status(400).send(err)
         }
-
-        // if okay next to controller
-        return next()
+            if (!err) {
+                return next()
+        }
         })
     }
 }

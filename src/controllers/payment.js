@@ -6,12 +6,22 @@ let FILE_PATH = 'http://localhost:5001/uploads/musics/'
 exports.addPayment = async (req, res) => {
     try {
         const { ...dataPayment } = req.body
-
-        const result = await cloudinary.uploader.upload(req.file.path, {
+        
+        console.log(req.files[0].path)
+        const result = await cloudinary.uploader.upload(req.files[0].path, {
             folder: 'dumbsound_file',
             use_filename: true,
             unique_filename: false,
-          });
+        });
+        
+        if (!result) {
+            res.send(400).send({
+                status: "failed",
+                message: "data not found"
+            })
+        }
+
+        console.log(result.public_id)
 
         let today = new Date();
         const data = await payment.create({
