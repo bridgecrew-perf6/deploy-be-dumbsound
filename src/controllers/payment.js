@@ -44,7 +44,7 @@ exports.addPayment = async (req, res) => {
         })
     } catch (error) {
         console.log(error)
-        res.send(500).send({
+        res.status(500).send({
             status: "failed",
             message: "server error"
         })
