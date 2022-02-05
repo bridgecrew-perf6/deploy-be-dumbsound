@@ -3,19 +3,38 @@ const cloudinary = require('../utils/cloudinary');
 
 const Joi = require("joi")
 
-let FILE_PATH = 'http://localhost:5001/uploads/musics/'
+let FILE_PATH = 'https://res.cloudinary.com/dbxxijc5x/image/upload/v1644047963/'
 
 exports.addMusic = async (req, res) => {
     try {
         const { ...dataMusic } = req.body
 
-        console.log(dataMusic)
-
-        const result = await cloudinary.uploader.upload(req.file.path, {
+        if (!req.files) {
+            return res.send(400).send({
+                status: "failde",
+                message: "please Upload file"
+            })
+        }
+        // console.log(dataMusic)
+        // const thumbnail = req.files[0].path
+        // const atthace = req.files[1].path
+        
+        
+        const thumbnail = await cloudinary.uploader.upload(req.files[0].path, {
             folder: 'dumbsound_file',
             use_filename: true,
             unique_filename: false,
-          });
+        });
+        
+        
+        const atthace = await cloudinary.uploader.upload(req.files[0].path, {
+            folder: 'dumbsound_file',
+            use_filename: true,
+            unique_filename: false,
+        });
+        // console.log(result)
+        console.log(thumbnail)
+        console.log(atthace)
 
         const schema = Joi.object({
             title: Joi.string().required(),
@@ -23,8 +42,6 @@ exports.addMusic = async (req, res) => {
             artisId: Joi.required(),
         });
 
-        const thumbnail = req.files[0].filename
-        const atthace = req.files[1].filename
 
         const { error } = schema.validate(dataMusic)
 
@@ -37,8 +54,8 @@ exports.addMusic = async (req, res) => {
         const addMusic = await music.create({
             title: dataMusic.title,
             year: dataMusic.year,
-            thumbnail: thumbnail,
-            atthace: atthace,
+            thumbnail: thumbnail.public.id,
+            atthace: atthace.public_id,
             artisId: dataMusic.artisId
         })
 

@@ -37,7 +37,7 @@ router.get("/getartis/:id", getArtis);
 router.put("/updateartis/:id", updateArtis);
 router.delete("/deleteartis/:id", deleteArtis);
 
-router.post("/addmusic", uploadMusic("image", "music"), auth, addMusic);
+router.post("/addmusic", uploadMusic("image", "music"), addMusic);
 router.get("/getmusics", getMusics);
 
 module.exports = router;
